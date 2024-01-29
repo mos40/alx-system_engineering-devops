@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script sends a SIGTERM signal to the 7-highlander process.
+
+# Find the PID of 7-highlander
+pid=$(pgrep -f "7-highlander")
+
+# Check if the process is running
+if [ -n "$pid" ]; then
+    # Send a termination signal to the process
+    kill -TERM "$pid"
+    echo "Termination signal sent to 7-highlander (PID: $pid)"
+else
+    echo "7-highlander is not running"
+fi
