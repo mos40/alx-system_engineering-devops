@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 # This script displays a list of currently running processes with hierarchy.
 
-# Display header
-printf "%-10s %-20s %-15s %s\n" "PID" "USER" "PPID" "COMMAND"
-
-# Iterate through all processes
-while read -r pid user ppid command; do
-    # Display process information
-    printf "%-10s %-20s %-15s %s\n" "$pid" "$user" "$ppid" "$command"
-done < <(ps -e -o pid,user,ppid,command --no-headers --forest)
+# Display process information in a user-oriented format
+ps -e -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --forest | head -50
