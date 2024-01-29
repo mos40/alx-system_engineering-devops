@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 # This script displays a list of currently running processes with hierarchy.
 
+# Display header
+printf "%-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %s\n" "USER" "PID" "%CPU" "%MEM" "VSZ" "RSS" "TTY" "STAT" "START" "COMMAND"
+
 # Display process information in a user-oriented format
-ps -e -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --forest | head -50
+ps -e -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --forest | head -n 50
