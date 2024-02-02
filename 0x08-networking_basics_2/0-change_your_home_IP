@@ -1,0 +1,14 @@
+#!/bin/env bash
+
+# Check if the script is running inside Docker
+if [ -f "/.dockerenv" ]; then
+    # Modify hosts file
+    echo "127.0.0.2 localhost" | sudo tee -a /etc/hosts
+    echo "8.8.8.8 facebook.com" | sudo tee -a /etc/hosts
+
+    # Display updated hosts file
+    echo "Updated hosts file:"
+    cat /etc/hosts
+else
+    echo "This script should be run inside Docker."
+fi
