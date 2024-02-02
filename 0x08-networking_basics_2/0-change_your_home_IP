@@ -1,5 +1,4 @@
 #!/bin/env bash
-
 # Check if the script is running inside Docker
 #   - localhost resolves to 127.0.0.2
 #   - facebook.com resolves to 8.8.8.8
