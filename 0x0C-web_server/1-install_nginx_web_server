@@ -1,16 +1,10 @@
 #!/usr/bin/env bash
-# This script installs Nginx on a new Ubuntu machine and configures it to meet the specified requirements.
-
+# This script installs Nginx on a new Ubuntu machine and
+# Configures it to meet the specified requirements.
 # Install Nginx silently
 # Configure Nginx to listen on port 80
 # Check if configuration was successful
 # Restart Nginx to apply changes
-
-
-# Configures a new ubuntu machine by installing
-# Nginx where it should be listening on port 80
-# Serve a page that would return a Hello World string
-#
 
 echo -e "Updating and installing Nginx.\n"
 sudo apt-get update -y -qq && \
