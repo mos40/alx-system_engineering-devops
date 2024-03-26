@@ -1,11 +1,3 @@
 #!/usr/bin/env bash
-# Check if the key pair already exists
-if [[ -e "school" ]]; then
-    echo "Key pair 'school' already exists."
-    exit 1
-fi
-
-# Generate the RSA key pair with specified parameters
-ssh-keygen -t rsa -b 4096 -C "Generated key pair for 'school'" -f school -N "betty"
-
-echo "RSA key pair 'school' has been successfully created."
+# Creates an RSA SSH key pair
+ssh-keygen -f school -b 4096 -N betty
