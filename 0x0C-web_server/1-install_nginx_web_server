@@ -4,7 +4,6 @@
 # Install Nginx silently
 # Configure Nginx to listen on port 80
 # Check if configuration was successful
-# Restart Nginx to apply changes
 
 echo -e "Updating and installing Nginx.\n"
 sudo apt-get update -y -qq && \
