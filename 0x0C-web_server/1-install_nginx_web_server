@@ -1,32 +1,49 @@
 #!/usr/bin/env bash
-# Configures a new ubuntu machine by installing
-# Nginx where it should be listening on port 80
-# Serve a page that would return a Hello World string
-#
+# This script installs Nginx on a new Ubuntu machine and configures it to meet the specified requirements.
 
-echo -e "Updating and installing Nginx.\n"
-sudo apt-get update -y -qq && \
-	 sudo apt-get install nginx -y
+# Install Nginx silently
+apt-get update -y
+apt-get install nginx -y
 
-echo -e "\nSetting up some minor stuff.\n"
+# Check if installation was successful
+if [ "$?" -eq 0 ]; then
+    echo "Nginx installation successful."
+else
+    echo "Nginx installation failed."
+    exit 1
+fi
 
-# starting nginx service
-sudo service nginx start
+# Configure Nginx to listen on port 80
+sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
 
-# allowing nginx on firewall
-sudo ufw allow 'Nginx HTTP'
+# Check if configuration was successful
+if [ "$?" -eq 0 ]; then
+    echo "Nginx configuration successful."
+else
+    echo "Nginx configuration failed."
+    exit 1
+fi
 
-# Give the user ownership to website files for easy editing
-sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www
+# Restart Nginx to apply changes
+nginx -s reload
 
-# Backup default index
-cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+# Check if restart was successful
+if [ "$?" -eq 0 ]; then
+    echo "Nginx restart successful."
+else
+    echo "Nginx restart failed."
+    exit 1
+fi
 
-# Creating new index
-echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
+# Create a test HTML file containing "Hello World!"
+echo "Hello World!" > /usr/share/nginx/html/index.html
 
-# Restarting nginx
-sudo service nginx restart
+# Check if HTML file creation was successful
+if [ "$?" -eq 0 ]; then
+    echo "Test HTML file creation successful."
+else
+    echo "Test HTML file creation failed."
+    exit 1
+fi
 
-echo -e "\nCompleted. ✅\n"
+echo "Nginx is now configured to serve 'Hello World!' at the root URL."
