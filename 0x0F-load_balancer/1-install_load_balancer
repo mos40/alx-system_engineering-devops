@@ -13,8 +13,8 @@ frontend sammykingx.tech
 
 backend web_servers
         balance roundrobin
-	server 460041-web-01 54.236.28.196
-	server 460041-web-02 52.91.118.232
+	server 460041-web-01 54.236.28.196 check
+	server 460041-web-02 52.91.118.232 check
 ' >> /etc/haproxy/haproxy.cfg
 
 # Restart HAproxy service
