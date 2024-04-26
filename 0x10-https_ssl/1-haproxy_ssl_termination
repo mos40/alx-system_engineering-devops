@@ -47,5 +47,5 @@ frontend maqhawe-frontend-https
 
 backend maqhawe-backend
         balance roundrobin
-        server 151666-web-01 54.236.28.196.21:80 check
-        server 151666-web-02 34.232.53.147.90:80 check
+        server 151666-web-01 54.236.28.196:80 check
+        server 151666-web-02 34.232.53.147:80 check
